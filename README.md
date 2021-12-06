@@ -1,4 +1,4 @@
-# covid_app_5
+# covid_app
 
 A new Flutter project.
 
