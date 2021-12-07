@@ -1,3 +1,4 @@
+import 'package:covid_app/src/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,15 +11,13 @@ class CovidApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Covid App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
+        //colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.teal.shade900),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Olá mundo!'),
-        ),
-      ),
+      home: Dashboard(),
     );
   }
 }
