@@ -16,26 +16,41 @@ class _DeathsViewState extends State<DeathsView> {
       ),
       body: SingleChildScrollView(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Padding(
-                padding: EdgeInsets.only(top: 64.0, bottom: 16.0),
-                child: Text(
-                  'Mortes por COVID19 no Brasil nos últimos seis meses',
-                  style: TextStyle(
-                    fontSize: 24.0,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.9,
+              decoration: const BoxDecoration(
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 15.0,
+                    offset: Offset(0.0, 0.75),
                   ),
-                ),
+                ],
+                color: Colors.white,
               ),
-              Text(
-                '1000',
-                style: TextStyle(
-                  fontSize: 24.0,
-                  color: Colors.redAccent,
-                ),
+              child: Column(
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'Mortes por COVID19 no Brasil nos últimos seis meses',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    '1000',
+                    style: TextStyle(
+                      fontSize: 32.0,
+                      color: Colors.redAccent,
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

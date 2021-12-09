@@ -1,3 +1,6 @@
+import 'package:covid_app/src/views/deaths_view.dart';
+import 'package:covid_app/src/views/moving_average_view.dart';
+import 'package:covid_app/src/views/saving_data_view.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
@@ -29,6 +32,11 @@ class Dashboard extends StatelessWidget {
                 color: Theme.of(context).primaryColor,
                 child: InkWell(
                   onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => DeathsView(),
+                      ),
+                    );
                   },
                   child: Container(
                     padding: const EdgeInsets.all(16.0),
@@ -53,6 +61,11 @@ class Dashboard extends StatelessWidget {
                 color: Theme.of(context).primaryColor,
                 child: InkWell(
                   onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => MovingAverageView(),
+                      ),
+                    );
                   },
                   child: Container(
                     padding: const EdgeInsets.all(16.0),
@@ -77,6 +90,11 @@ class Dashboard extends StatelessWidget {
                 color: Theme.of(context).primaryColor,
                 child: InkWell(
                   onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => SavingDataView(),
+                      ),
+                    );
                   },
                   child: Container(
                     padding: const EdgeInsets.all(16.0),
