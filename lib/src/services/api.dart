@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
 
+import 'package:covid_app/src/models/get_date.dart';
 import 'package:covid_app/src/models/status.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
@@ -22,9 +23,19 @@ const baseUrlFirebase = 'https://covidapp-17a55-default-rtdb.firebaseio.com/';
 
 class ApiService {
 
-  static Future <List<Status>> getCases() async {
+  static Future <List<Status>> getCasesFromSixMonthsAgo() async {
     var url =
-    Uri.parse('$baseUrl/$country/status/confirmed/date/$dateSixMonthsAgo');
+    Uri.parse('$baseUrl/$country/status/confirmed/date/${getDateSixMonthsAgo()}');
+    var response = await http.get(url);
+    Iterable casesInTheLastSixMonths = json.decode(response.body);
+    return casesInTheLastSixMonths
+        .map((model) => Status.fromJson(model))
+        .toList();
+  }
+
+  static Future <List<Status>> getCasesTwoWeeksAgo() async {
+    var url =
+    Uri.parse('$baseUrl/$country/status/confirmed/date/${getDateTwoWeeksAgo()}');
     var response = await http.get(url);
     Iterable casesInTheLastSixMonths = json.decode(response.body);
     return casesInTheLastSixMonths

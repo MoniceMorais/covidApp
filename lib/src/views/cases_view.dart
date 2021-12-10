@@ -49,7 +49,7 @@ class _CasesViewState extends State<CasesView> {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: FutureBuilder<List<Status>>(
-                      future: ApiService.getCases(),
+                      future: ApiService.getCasesFromSixMonthsAgo(),
                       builder: (context, snapshot) {
                         switch (snapshot.connectionState) {
                           case ConnectionState.none:
