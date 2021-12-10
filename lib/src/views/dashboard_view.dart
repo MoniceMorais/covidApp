@@ -1,4 +1,4 @@
-import 'package:covid_app/src/views/deaths_view.dart';
+import 'package:covid_app/src/views/cases_view.dart';
 import 'package:covid_app/src/views/moving_average_view.dart';
 import 'package:covid_app/src/views/saving_data_view.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +34,7 @@ class Dashboard extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => DeathsView(),
+                        builder: (context) => CasesView(),
                       ),
                     );
                   },
@@ -44,7 +44,7 @@ class Dashboard extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.9,
                     child: const Center(
                       child: Text(
-                        'Mortes',
+                        'Casos',
                         style: TextStyle(
                           fontSize: 24.0,
                           color: Colors.white,
