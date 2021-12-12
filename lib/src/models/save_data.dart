@@ -1,7 +1,7 @@
 import 'package:covid_app/src/models/status.dart';
 import 'package:flutter/cupertino.dart';
 
-int saveData(List<Status> cases) {
+int saveData(List<Status> cases, double lat, double long) {
   int province = 27;
   int days = 30;
 
