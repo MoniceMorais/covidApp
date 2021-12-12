@@ -1,3 +1,6 @@
+import 'package:covid_app/src/models/calculate_cases.dart';
+import 'package:covid_app/src/models/status.dart';
+import 'package:covid_app/src/services/api.dart';
 import 'package:flutter/material.dart';
 
 class MovingAverageView extends StatefulWidget {
@@ -14,11 +17,47 @@ class _MovingAverageViewState extends State<MovingAverageView> {
       appBar: AppBar(
         title: const Text('Média Móvel de Mortes'),
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(8),
-        itemCount: 100,
-        itemBuilder: (BuildContext context, int index) {
-          return _buildMovingAverageDay(index, 'data', index);
+      body: FutureBuilder<List<Status>>(
+        future: ApiService.getCasesTwoWeeksAgo(),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              break;
+            case ConnectionState.waiting:
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const <Widget>[
+                    CircularProgressIndicator(),
+                    Text('Loading')
+                  ],
+                ),
+              );
+            case ConnectionState.active:
+              break;
+            case ConnectionState.done:
+              List<int> movingAverage = [];
+              List<int> movingAverageSum = [];
+              List<String> movingAverageDates = [];
+
+              movingAverageSum = getMovingAverageSum(snapshot.data!);
+              movingAverage = getMovingAverage(movingAverageSum);
+              movingAverageDates = getMovingAverageDates(snapshot.data!);
+
+              return ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: 14,
+                itemBuilder: (BuildContext context, int index) {
+                  return _buildMovingAverageDay(
+                    movingAverage[index],
+                    movingAverageDates[index],
+                    movingAverageSum[index],
+                  );
+                },
+              );
+          }
+          return const Text('Unknown error');
         },
       ),
     );

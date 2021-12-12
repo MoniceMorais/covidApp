@@ -37,12 +37,19 @@ class ApiService {
     var url =
     Uri.parse('$baseUrl/$country/status/confirmed/date/${getDateTwoWeeksAgo()}');
     var response = await http.get(url);
-    Iterable casesInTheLastSixMonths = json.decode(response.body);
-    return casesInTheLastSixMonths
+    Iterable casesInTheLastTwoWeek = json.decode(response.body);
+    return casesInTheLastTwoWeek
         .map((model) => Status.fromJson(model))
         .toList();
   }
 
-
-
+  static Future <List<Status>> getCasesOneMonthAgoAgo() async {
+    var url =
+    Uri.parse('$baseUrl/$country/status/confirmed/date/${getDateOneMonthAgo()}');
+    var response = await http.get(url);
+    Iterable casesInTheLastOneMonth = json.decode(response.body);
+    return casesInTheLastOneMonth
+        .map((model) => Status.fromJson(model))
+        .toList();
+  }
 }
