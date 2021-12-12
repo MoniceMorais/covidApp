@@ -3,8 +3,12 @@ import 'package:covid_app/src/views/cases_view.dart';
 import 'package:covid_app/src/views/moving_average_view.dart';
 import 'package:covid_app/src/views/saving_data_view.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const CovidApp());
 }
 
