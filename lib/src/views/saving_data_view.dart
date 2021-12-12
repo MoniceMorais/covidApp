@@ -14,10 +14,6 @@ class SavingDataView extends StatefulWidget {
 }
 
 class _SavingDataViewState extends State<SavingDataView> {
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,21 +43,19 @@ class _SavingDataViewState extends State<SavingDataView> {
                 case ConnectionState.active:
                   break;
                 case ConnectionState.done:
-                  //var status = saveData(snapshot.data!);
-
                   return ChangeNotifierProvider<PostosController>(
                     create: (context) => PostosController(),
                     child: Builder(builder: (context) {
                       final local = context.watch<PostosController>();
-
-                      var status =
+                      String message = local.erro;
+                      if(message == ''){
+                        if(local.lat != 0 && local.long != 0){
                           saveData(snapshot.data!, local.lat, local.long);
-                      String menssage = local.erro == ''
-                          ? 'latitude: ${local.lat}'
-                          : local.erro;
-
+                          message = "Dados salvos com sucesso!";
+                        }
+                      }
                       return Center(
-                        child: Text(menssage),
+                        child: Text(message),
                       );
                     }),
                   );

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covid_app/src/models/status.dart';
 import 'package:flutter/cupertino.dart';
 
-int saveData(List<Status> cases, double lat, double long) {
+void saveData(List<Status> cases, double lat, double long) {
   int province = 27;
   int days = 30;
 
@@ -90,5 +90,4 @@ int saveData(List<Status> cases, double lat, double long) {
 
   _create(maxValueDeaths,maxValueCases,lat,long,DateTime.now().toString());
 
-  return 1;
 }
