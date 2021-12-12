@@ -14,15 +14,6 @@ class SavingDataView extends StatefulWidget {
 }
 
 class _SavingDataViewState extends State<SavingDataView> {
-  CollectionReference _productss =
-      FirebaseFirestore.instance.collection('data');
-
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _priceController = TextEditingController();
-
-  Future<void> _createOrUpdate() async {
-    await _productss.add({"name": "teste", "price": "teste"});
-  }
 
 
 
@@ -62,7 +53,7 @@ class _SavingDataViewState extends State<SavingDataView> {
                     create: (context) => PostosController(),
                     child: Builder(builder: (context) {
                       final local = context.watch<PostosController>();
-                      _createOrUpdate();
+
                       var status =
                           saveData(snapshot.data!, local.lat, local.long);
                       String menssage = local.erro == ''

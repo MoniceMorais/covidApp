@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covid_app/src/models/status.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -68,32 +69,26 @@ int saveData(List<Status> cases, double lat, double long) {
 
   //-------------------------------------------------------------------//
 
-  List<String> dates = [];
-  String dateMaxCases = "";
-  String dateMaxDeaths = "";
+  CollectionReference _productss =
+      FirebaseFirestore.instance.collection('data');
 
-  // Pega as datas de cases
-  for (var j = 0; j < cases.length; j++) {
-    if ((j % 27) == 0) {
-      dates.add(cases[j].date!);
-    }
+  Future<void> _create(
+    var maxDeaths,
+    var maxCases,
+    var latitude,
+    var longitude,
+    var dateAndTime,
+  ) async {
+    await _productss.add({
+      "maxDeaths": maxDeaths,
+      "maxCases": maxCases,
+      "latitude": latitude,
+      "longitude": longitude,
+      "dateAndTime": dateAndTime,
+    });
   }
 
-  if (indexMaxValueCases >= dates.length) {
-    dateMaxCases = dates[dates.length - 1];
-  } else {
-    dateMaxCases = dates[indexMaxValueCases];
-  }
-
-  if (indexMaxValueDeaths >= dates.length) {
-    dateMaxDeaths = dates[dates.length - 1];
-  } else {
-    dateMaxDeaths = dates[indexMaxValueDeaths];
-  }
-
-  //-----------------------------------------------------------------//
-
-
+  _create(maxValueDeaths,maxValueCases,lat,long,DateTime.now().toString());
 
   return 1;
 }
